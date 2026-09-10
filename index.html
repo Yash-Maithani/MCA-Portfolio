@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Yash — Developer Portfolio | Student Developer • Java • Web • Android • AI">
+  <meta name="keywords" content="Yash, Developer Portfolio, Java, Android, Artificial Intelligence, Web Development, MCA, GitHub Pages">
+  <meta name="author" content="Yash">
+  <title>Yash | Developer Portfolio</title>
+  
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar-wrapper">
+    <nav class="navbar container">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-icon"><i class="fa-solid fa-code"></i></span>
+        <span class="logo-text">Yash<span class="logo-dot">.dev</span></span>
+      </a>
+
+      <div class="nav-menu" id="navMenu">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#hero" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+          <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Theme Toggle Button -->
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle dark/light theme" title="Toggle theme">
+          <i class="fa-solid fa-sun icon-sun"></i>
+          <i class="fa-solid fa-moon icon-moon"></i>
+        </button>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ================= HERO SECTION ================= -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="badge-status">
+            <span class="pulsing-dot"></span>
+            <span>Student Developer • Java • Web • Android • AI</span>
+          </div>
+          <h1 class="hero-title">
+            Hi, I'm <span class="gradient-text">Yash</span>.
+          </h1>
+          <h2 class="hero-subtitle">
+            <span id="typedText">I build useful digital experiences.</span>
+            <span class="cursor">|</span>
+          </h2>
+          <p class="hero-description">
+            I'm a student developer passionate about software development, artificial intelligence, application development, and web technologies. I enjoy turning ideas into functional, user-friendly digital solutions while continuously improving my programming and problem-solving skills.
+          </p>
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">
+              <span>View My Projects</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="#contact" class="btn btn-outline">
+              <i class="fa-regular fa-envelope"></i>
+              <span>Contact Me</span>
+            </a>
+          </div>
+          <div class="hero-socials">
+            <span class="socials-label">Connect:</span>
+            <a href="https://github.com/Yash-Maithani" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" class="social-link"><i class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="mailto:contact@example.com" aria-label="Send Email" class="social-link"><i class="fa-solid fa-envelope"></i></a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-card-glow"></div>
+          <div class="hero-profile-card">
+            <div class="card-terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="terminal-title">yash@developer-workspace:~</span>
+            </div>
+            <div class="card-terminal-body">
+              <div class="code-line"><span class="prompt">$</span> <span class="cmd">cat</span> <span class="file">yash-profile.json</span></div>
+              <pre class="json-code"><code>{
+  <span class="json-key">"name"</span>: <span class="json-str">"Yash"</span>,
+  <span class="json-key">"role"</span>: <span class="json-str">"Student Developer"</span>,
+  <span class="json-key">"interests"</span>: [
+    <span class="json-str">"Java Development"</span>,
+    <span class="json-str">"Web Technologies"</span>,
+    <span class="json-str">"Android Apps"</span>,
+    <span class="json-str">"Artificial Intelligence"</span>
+  ],
+  <span class="json-key">"github"</span>: <span class="json-str">"Yash-Maithani"</span>,
+  <span class="json-key">"motto"</span>: <span class="json-str">"Build, experiment & continuously improve"</span>
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ME ================= -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">01. Overview</span>
+          <h2 class="section-title">About Me</h2>
+          <div class="title-underline"></div>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-text-card">
+            <h3>Turning ideas into functional, user-friendly digital solutions.</h3>
+            <p>
+              I am a passionate student developer with an interest in software development, artificial intelligence, application development, and web technologies. I enjoy learning by building practical projects that help me understand programming concepts and real-world development workflows.
+            </p>
+            <p>
+              My current areas of interest include Java programming, web development, Android application development, artificial intelligence, face and emotion recognition, Git and GitHub, and problem solving. I am focused on strengthening my fundamentals while gaining practical experience through academic and personal projects.
+            </p>
+            <p>
+              I believe that the best way to learn technology is by building, experimenting, solving problems, and continuously improving. My goal is to become a skilled software developer capable of creating reliable, efficient, and user-friendly applications.
+            </p>
+
+            <div class="career-objective-box">
+              <h4><i class="fa-solid fa-bullseye"></i> Career Objective</h4>
+              <p>
+                My goal is to build a strong foundation in software development and artificial intelligence while gaining practical industry experience. I am interested in opportunities where I can apply my programming knowledge, work on real-world projects, explore emerging technologies, learn from experienced developers, and continue growing as a software engineer.
+              </p>
+            </div>
+          </div>
+
+          <!-- Quick Overview Cards (01 - 04) -->
+          <div class="about-stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fa-solid fa-brain"></i></div>
+              <h4 class="stat-number">01</h4>
+              <h5 class="quick-title">Problem Solving</h5>
+              <p class="stat-label">Developing logical thinking and programming skills through practical problems and projects.</p>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fa-solid fa-laptop-code"></i></div>
+              <h4 class="stat-number">02</h4>
+              <h5 class="quick-title">Software Development</h5>
+              <p class="stat-label">Building applications and websites using Java, HTML, CSS, JavaScript and Android.</p>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fa-solid fa-robot"></i></div>
+              <h4 class="stat-number">03</h4>
+              <h5 class="quick-title">Artificial Intelligence</h5>
+              <p class="stat-label">Exploring computer vision and AI-based applications like face and emotion recognition.</p>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fa-solid fa-book-open-reader"></i></div>
+              <h4 class="stat-number">04</h4>
+              <h5 class="quick-title">Continuous Learning</h5>
+              <p class="stat-label">Learning new technologies and improving skills through hands-on practical projects.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SKILLS SECTION ================= -->
+    <section class="section skills-section" id="skills">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">02. Capabilities</span>
+          <h2 class="section-title">Technical Skills</h2>
+          <p class="section-subtitle">Core programming languages, frameworks, and tools I use to build applications.</p>
+          <div class="title-underline"></div>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Skill Card 1: Java & Object-Oriented -->
+          <div class="skill-category-card">
+            <div class="category-header">
+              <div class="category-icon cloud"><i class="fa-brands fa-java"></i></div>
+              <div>
+                <h3>Java Programming</h3>
+                <span class="category-sub">Object-Oriented & Core</span>
+              </div>
+            </div>
+            <p class="skill-desc">Object-Oriented Programming, Core Java, structured classes, and application development.</p>
+            <div class="skills-tags">
+              <span class="skill-tag">Core Java</span>
+              <span class="skill-tag">OOP Concepts</span>
+              <span class="skill-tag">Spring Boot</span>
+              <span class="skill-tag">Modular Architecture</span>
+            </div>
+          </div>
+
+          <!-- Skill Card 2: Web Technologies -->
+          <div class="skill-category-card">
+            <div class="category-header">
+              <div class="category-icon frontend"><i class="fa-brands fa-html5"></i></div>
+              <div>
+                <h3>Web Development</h3>
+                <span class="category-sub">HTML, CSS & JavaScript</span>
+              </div>
+            </div>
+            <p class="skill-desc">Responsive websites, modern layouts, client-side functionality, and interactive web pages.</p>
+            <div class="skills-tags">
+              <span class="skill-tag"><i class="fa-brands fa-html5"></i> HTML5</span>
+              <span class="skill-tag"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+              <span class="skill-tag"><i class="fa-brands fa-js"></i> JavaScript</span>
+              <span class="skill-tag">Responsive UI</span>
+              <span class="skill-tag">GitHub Pages</span>
+            </div>
+          </div>
+
+          <!-- Skill Card 3: Android Development -->
+          <div class="skill-category-card">
+            <div class="category-header">
+              <div class="category-icon backend"><i class="fa-brands fa-android"></i></div>
+              <div>
+                <h3>Android Development</h3>
+                <span class="category-sub">Mobile Applications</span>
+              </div>
+            </div>
+            <p class="skill-desc">Android applications engineered using Java, XML layouts, event handling, and Android Studio.</p>
+            <div class="skills-tags">
+              <span class="skill-tag"><i class="fa-brands fa-android"></i> Android Studio</span>
+              <span class="skill-tag">XML Layouts</span>
+              <span class="skill-tag">Android SDK</span>
+              <span class="skill-tag">Event Handling</span>
+            </div>
+          </div>
+
+          <!-- Skill Card 4: AI & Computer Vision -->
+          <div class="skill-category-card">
+            <div class="category-header">
+              <div class="category-icon tools"><i class="fa-solid fa-eye"></i></div>
+              <div>
+                <h3>AI & Computer Vision</h3>
+                <span class="category-sub">Face & Emotion Recognition</span>
+              </div>
+            </div>
+            <p class="skill-desc">Detecting faces, recognizing facial emotions, image processing, and visual classification.</p>
+            <div class="skills-tags">
+              <span class="skill-tag">Artificial Intelligence</span>
+              <span class="skill-tag">Computer Vision</span>
+              <span class="skill-tag">Face Recognition</span>
+              <span class="skill-tag">Image Processing</span>
+            </div>
+          </div>
+
+          <!-- Skill Card 5: Git, GitHub & Problem Solving -->
+          <div class="skill-category-card" style="grid-column: 1 / -1;">
+            <div class="category-header">
+              <div class="category-icon" style="background: linear-gradient(135deg, #4f46e5, #06b6d4);"><i class="fa-brands fa-git-alt"></i></div>
+              <div>
+                <h3>Git, GitHub & Problem Solving</h3>
+                <span class="category-sub">Version Control & Algorithmic Thinking</span>
+              </div>
+            </div>
+            <p class="skill-desc">Version control, repositories, collaboration workflows, logical thinking, and programming problem-solving.</p>
+            <div class="skills-tags">
+              <span class="skill-tag"><i class="fa-brands fa-git-alt"></i> Git</span>
+              <span class="skill-tag"><i class="fa-brands fa-github"></i> GitHub</span>
+              <span class="skill-tag">Problem Solving</span>
+              <span class="skill-tag">Algorithmic Concepts</span>
+              <span class="skill-tag">VS Code</span>
+              <span class="skill-tag">MySQL Database</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROJECTS SECTION ================= -->
+    <section class="section projects-section" id="projects">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">03. Portfolio</span>
+          <h2 class="section-title">Projects</h2>
+          <p class="section-subtitle">Practical applications developed to solve real-world problems and solidify core concepts.</p>
+          <div class="title-underline"></div>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1: Face & Emotion Recognition -->
+          <article class="project-card">
+            <div class="project-banner">
+              <div class="project-badge">AI & Computer Vision</div>
+              <i class="fa-solid fa-face-smile project-icon-bg"></i>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">1. Face & Emotion Recognition System</h3>
+              <p class="project-description">
+                A computer vision and artificial intelligence project designed to detect human faces and recognize emotions from facial expressions. The system processes visual input and analyzes facial features to identify the detected emotional state.
+              </p>
+              <div class="project-features-list">
+                <strong>Features:</strong>
+                <ul>
+                  <li>• Face detection & expression analysis</li>
+                  <li>• Emotion recognition & real-time visual analysis</li>
+                  <li>• Image/video processing & AI-based classification</li>
+                  <li>• User-friendly output</li>
+                </ul>
+              </div>
+              <div class="project-tech-stack">
+                <span>Python</span>
+                <span>Computer Vision</span>
+                <span>Artificial Intelligence</span>
+                <span>Image Processing</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Yash-Maithani" target="_blank" rel="noopener noreferrer" class="btn-project-link">
+                  <i class="fa-brands fa-github"></i> View on GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: TraceX -->
+          <article class="project-card">
+            <div class="project-banner">
+              <div class="project-badge">Enterprise & Web</div>
+              <i class="fa-solid fa-boxes-stacked project-icon-bg"></i>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">2. TraceX — Batch Traceability & Management System</h3>
+              <p class="project-description">
+                TraceX is a software system designed to improve batch traceability and management by connecting product information with digital records. The system focuses on tracking batches, managing relevant information, and providing an organized workflow for monitoring products throughout their lifecycle.
+              </p>
+              <div class="project-features-list">
+                <strong>Features:</strong>
+                <ul>
+                  <li>• Batch management & product traceability</li>
+                  <li>• Digital record management, search and tracking</li>
+                  <li>• Database integration & REST API communication</li>
+                  <li>• User-friendly interface</li>
+                </ul>
+              </div>
+              <div class="project-tech-stack">
+                <span>Java</span>
+                <span>Spring Boot</span>
+                <span>MySQL</span>
+                <span>REST APIs</span>
+                <span>Git & GitHub</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Yash-Maithani" target="_blank" rel="noopener noreferrer" class="btn-project-link">
+                  <i class="fa-brands fa-github"></i> View on GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: Java Application Project -->
+          <article class="project-card">
+            <div class="project-banner">
+              <div class="project-badge">Core Java & OOP</div>
+              <i class="fa-brands fa-java project-icon-bg"></i>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">3. Java Application Project</h3>
+              <p class="project-description">
+                A Java-based academic project developed to apply object-oriented programming concepts and practical problem-solving techniques. The project focuses on creating a structured application using classes, objects, methods, and logical programming.
+              </p>
+              <div class="project-features-list">
+                <strong>Features:</strong>
+                <ul>
+                  <li>• Object-oriented design & modular code</li>
+                  <li>• Structured program architecture</li>
+                  <li>• User input handling & logical processing</li>
+                </ul>
+              </div>
+              <div class="project-tech-stack">
+                <span>Java</span>
+                <span>OOP</span>
+                <span>Data Structures</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Yash-Maithani" target="_blank" rel="noopener noreferrer" class="btn-project-link">
+                  <i class="fa-brands fa-github"></i> View on GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4: Android Application -->
+          <article class="project-card">
+            <div class="project-banner">
+              <div class="project-badge">Mobile Development</div>
+              <i class="fa-brands fa-android project-icon-bg"></i>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">4. Android Application</h3>
+              <p class="project-description">
+                An Android application developed using Java and XML to understand mobile application development. The project focuses on designing user interfaces, handling user interactions, and implementing application functionality.
+              </p>
+              <div class="project-features-list">
+                <strong>Features:</strong>
+                <ul>
+                  <li>• Android user interface with XML</li>
+                  <li>• Button interactions & multiple UI components</li>
+                  <li>• Event handling & Java application logic</li>
+                </ul>
+              </div>
+              <div class="project-tech-stack">
+                <span>Java</span>
+                <span>Android Studio</span>
+                <span>XML</span>
+                <span>Android SDK</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Yash-Maithani" target="_blank" rel="noopener noreferrer" class="btn-project-link">
+                  <i class="fa-brands fa-github"></i> View on GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 5: Personal Portfolio Website -->
+          <article class="project-card" style="grid-column: 1 / -1;">
+            <div class="project-banner">
+              <div class="project-badge">Web & Deployment</div>
+              <i class="fa-solid fa-globe project-icon-bg"></i>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">5. Personal Portfolio Website</h3>
+              <p class="project-description">
+                A responsive personal portfolio website developed to showcase my skills, projects, education, and contact information. The website is designed using HTML, CSS, and JavaScript and is deployed using GitHub Pages.
+              </p>
+              <div class="project-features-list">
+                <strong>Features:</strong>
+                <ul>
+                  <li>• Responsive design & mobile-friendly layout</li>
+                  <li>• Navigation menu, About, Skills, Projects, Education, and Contact sections</li>
+                  <li>• Dark/Light theme switcher with local storage persistence</li>
+                  <li>• Automated continuous hosting on GitHub Pages</li>
+                </ul>
+              </div>
+              <div class="project-tech-stack">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>Git</span>
+                <span>GitHub Pages</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Yash-Maithani/portfolio" target="_blank" rel="noopener noreferrer" class="btn-project-link">
+                  <i class="fa-brands fa-github"></i> Repository
+                </a>
+                <a href="https://Yash-Maithani.github.io/portfolio/" target="_blank" rel="noopener noreferrer" class="btn-project-link" style="color: var(--accent-primary);">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Website Demo
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EDUCATION & LEARNING ================= -->
+    <section class="section education-section" id="education">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">04. Milestones</span>
+          <h2 class="section-title">Education & Continuous Learning</h2>
+          <div class="title-underline"></div>
+        </div>
+
+        <div class="education-learning-grid">
+          <!-- Education Card -->
+          <div class="education-card">
+            <div class="education-badge"><i class="fa-solid fa-graduation-cap"></i> Academic Degree</div>
+            <h3 class="degree-title">Master of Computer Applications (MCA)</h3>
+            <h4 class="college-name">[Your College / University Name]</h4>
+            <span class="edu-duration"><i class="fa-regular fa-calendar"></i> [Start Year] – Present</span>
+            <p class="edu-desc">
+              Currently pursuing an MCA with a focus on programming, software development, application development, and computer science fundamentals.
+            </p>
+          </div>
+
+          <!-- Currently Learning Card -->
+          <div class="learning-card">
+            <div class="learning-badge"><i class="fa-solid fa-book-open"></i> Growth Areas</div>
+            <h3 class="learning-title">Currently Learning</h3>
+            <p class="learning-subtitle">Technologies and topics I am actively practicing and exploring:</p>
+            <div class="learning-list">
+              <span class="learning-pill"><i class="fa-solid fa-check"></i> Java Development</span>
+              <span class="learning-pill"><i class="fa-solid fa-check"></i> Web Development</span>
+              <span class="learning-pill"><i class="fa-solid fa-check"></i> Android Development</span>
+              <span class="learning-pill"><i class="fa-solid fa-check"></i> Artificial Intelligence</span>
+              <span class="learning-pill"><i class="fa-solid fa-check"></i> Computer Vision</span>
+              <span class="learning-pill"><i class="fa-solid fa-check"></i> Data Structures & Algorithms</span>
+              <span class="learning-pill"><i class="fa-solid fa-check"></i> Database Management</span>
+              <span class="learning-pill"><i class="fa-solid fa-check"></i> Git & GitHub</span>
+              <span class="learning-pill"><i class="fa-solid fa-check"></i> Software Development Practices</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT SECTION ================= -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">05. Connect</span>
+          <h2 class="section-title">Let's Connect.</h2>
+          <p class="section-subtitle">
+            I'm always interested in learning, building new projects, and connecting with other people in technology. Feel free to reach out through the links below.
+          </p>
+          <div class="title-underline"></div>
+        </div>
+
+        <div class="contact-wrapper">
+          <div class="contact-info">
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div class="contact-details">
+                <h4>Email</h4>
+                <a href="mailto:contact@example.com">yash.maithani@example.com</a>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fa-brands fa-github"></i></div>
+              <div class="contact-details">
+                <h4>GitHub</h4>
+                <a href="https://github.com/Yash-Maithani" target="_blank" rel="noopener noreferrer">github.com/Yash-Maithani</a>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+              <div class="contact-details">
+                <h4>LinkedIn</h4>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fa-solid fa-globe"></i></div>
+              <div class="contact-details">
+                <h4>Live Portfolio</h4>
+                <a href="https://Yash-Maithani.github.io/portfolio/" target="_blank" rel="noopener noreferrer">Yash-Maithani.github.io/portfolio/</a>
+              </div>
+            </div>
+          </div>
+
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" name="email" placeholder="name@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="Project / Inquiry" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Hi Yash, I would like to connect regarding..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+              <span>Send Message</span>
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+            <div class="form-alert" id="formAlert"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <a href="#hero" class="footer-logo">
+          <i class="fa-solid fa-code"></i> Yash<span>.dev</span>
+        </a>
+        <p class="footer-copy">
+          &copy; 2026 Yash | Built with HTML, CSS & JavaScript. Hosted on GitHub Pages.
+        </p>
+      </div>
+
+      <div class="footer-right">
+        <a href="#hero" class="back-to-top" aria-label="Back to top">
+          <span>Back to Top</span>
+          <i class="fa-solid fa-arrow-up"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
