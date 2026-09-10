@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Yash Portfolio — GitHub Pages Step-by-Step Guide</title>
+  <style>
+    /* =================== PRINT & DOCUMENT STYLES =================== */
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    @page {
+      size: A4 portrait;
+      margin: 14mm 14mm 14mm 14mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #1e293b;
+      background: #ffffff;
+      line-height: 1.5;
+      font-size: 9.5pt;
+    }
+
+    .page-break {
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .avoid-break {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      min-height: 94vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px 24px;
+      page-break-after: always;
+      break-after: page;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    }
+
+    .cover-header {
+      border-bottom: 3px solid #6366f1;
+      padding-bottom: 18px;
+    }
+
+    .course-badge {
+      display: inline-block;
+      background: #e0e7ff;
+      color: #4338ca;
+      font-weight: 700;
+      font-size: 8.5pt;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .cover-title {
+      font-size: 24pt;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .cover-subtitle {
+      font-size: 11.5pt;
+      color: #475569;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .cover-summary-box {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin: 20px 0;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    }
+
+    .cover-summary-box h3 {
+      font-size: 10.5pt;
+      color: #1e293b;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .cover-checklist {
+      list-style: none;
+    }
+
+    .cover-checklist li {
+      margin-bottom: 6px;
+      font-size: 9.5pt;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      color: #334155;
+    }
+
+    .check-icon {
+      color: #10b981;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .cover-footer {
+      border-top: 1px solid #e2e8f0;
+      padding-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .meta-group {
+      margin-bottom: 6px;
+    }
+
+    .meta-label {
+      font-size: 8pt;
+      text-transform: uppercase;
+      color: #64748b;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .meta-value {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    /* Headings */
+    h1, h2, h3, h4 {
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: 13.5pt;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 5px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    .section-num {
+      background: #4f46e5;
+      color: #ffffff;
+      font-size: 8.5pt;
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-weight: 800;
+    }
+
+    h3 {
+      font-size: 10.5pt;
+      margin-top: 12px;
+      margin-bottom: 5px;
+      color: #1e293b;
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 8px;
+      color: #334155;
+    }
+
+    /* Code & Terminal blocks */
+    pre, code {
+      font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+    }
+
+    code {
+      background: #f1f5f9;
+      color: #475569;
+      padding: 1px 4px;
+      border-radius: 4px;
+      font-size: 8.5pt;
+      border: 1px solid #e2e8f0;
+    }
+
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 8pt;
+      line-height: 1.45;
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin: 8px 0 10px 0;
+      border-left: 3px solid #6366f1;
+    }
+
+    pre code {
+      background: transparent;
+      color: #f8fafc;
+      padding: 0;
+      border: none;
+      font-size: inherit;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 12px 0;
+      font-size: 8.5pt;
+    }
+
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 6px 9px;
+      text-align: left;
+    }
+
+    th {
+      background: #f1f5f9;
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    /* Callout Boxes */
+    .callout {
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin: 10px 0;
+      font-size: 8.5pt;
+      border-left: 3px solid;
+    }
+
+    .callout-info {
+      background: #eff6ff;
+      border-color: #3b82f6;
+      color: #1e40af;
+    }
+
+    .callout-success {
+      background: #ecfdf5;
+      border-color: #10b981;
+      color: #065f46;
+    }
+
+    .callout-warning {
+      background: #fffbeb;
+      border-color: #f59e0b;
+      color: #92400e;
+    }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 9pt;
+    }
+
+    /* Step Cards */
+    .step-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-weight: 700;
+      font-size: 9.5pt;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .step-circle {
+      width: 18px;
+      height: 18px;
+      background: #6366f1;
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 7.5pt;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* Submission Form Placeholder */
+    .submission-box {
+      border: 2px dashed #6366f1;
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 14px;
+      margin-top: 10px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .submission-row {
+      margin-bottom: 8px;
+      font-size: 8.5pt;
+      display: flex;
+      align-items: center;
+    }
+
+    .submission-label {
+      font-weight: 700;
+      color: #1e293b;
+      width: 170px;
+      flex-shrink: 0;
+    }
+
+    .submission-input {
+      font-family: 'JetBrains Mono', monospace;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 4px 8px;
+      border-radius: 4px;
+      flex-grow: 1;
+      color: #0f172a;
+    }
+
+    .toc {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+    }
+
+    .toc ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .toc li {
+      margin-bottom: 5px;
+      font-size: 9pt;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dotted #cbd5e1;
+      padding-bottom: 2px;
+    }
+
+    .toc li span.page-ref {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      color: #6366f1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== COVER PAGE ==================== -->
+  <div class="cover-page">
+    <div class="cover-header">
+      <span class="course-badge">Developer Portfolio Assignment</span>
+      <h1 class="cover-title">Yash — Developer Portfolio & GitHub Pages Deployment</h1>
+      <p class="cover-subtitle">
+        Student Developer • Java • Web • Android • AI<br>
+        A Complete Step-by-Step Technical Guide for Project Setup, Development, Git Version Control, and Live Hosting
+      </p>
+    </div>
+
+    <div class="cover-summary-box">
+      <h3>Assignment Objectives & Deliverables</h3>
+      <ul class="cover-checklist">
+        <li><span class="check-icon">✔</span> <strong>Step 1:</strong> Project Setup & Directory Architecture (portfolio folder)</li>
+        <li><span class="check-icon">✔</span> <strong>Step 2:</strong> Modern Website Development (HTML5, CSS3, ES6 JavaScript)</li>
+        <li><span class="check-icon">✔</span> <strong>Step 3:</strong> Adding Portfolio Sections & Features (About, Skills, 5 Projects, Education, Contact)</li>
+        <li><span class="check-icon">✔</span> <strong>Step 4:</strong> Creating and Setting Up GitHub Repository (<code>portfolio</code>)</li>
+        <li><span class="check-icon">✔</span> <strong>Step 5:</strong> Pushing the Project to GitHub (<code>git init</code>, <code>add</code>, <code>commit</code>, <code>remote</code>, <code>push</code>)</li>
+        <li><span class="check-icon">✔</span> <strong>Step 6:</strong> Deploying the Website using GitHub Pages (main branch, root folder)</li>
+        <li><span class="check-icon">✔</span> <strong>Step 7:</strong> Adding the Final Live Website Link & Submission Verification</li>
+      </ul>
+    </div>
+
+    <div class="cover-footer">
+      <div>
+        <div class="meta-group">
+          <div class="meta-label">Author / Student</div>
+          <div class="meta-value">Yash</div>
+        </div>
+        <div class="meta-group">
+          <div class="meta-label">GitHub Account</div>
+          <div class="meta-value"><a href="https://github.com/Yash-Maithani" style="color: #4f46e5; text-decoration: none;">github.com/Yash-Maithani</a></div>
+        </div>
+      </div>
+      <div style="text-align: right;">
+        <div class="meta-group">
+          <div class="meta-label">Submission Deadline</div>
+          <div class="meta-value">Sunday</div>
+        </div>
+        <div class="meta-group">
+          <div class="meta-label">Live Deployment Link</div>
+          <div class="meta-value" style="font-family: 'JetBrains Mono', monospace; font-size: 9pt; color: #059669;">Yash-Maithani.github.io/portfolio/</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TABLE OF CONTENTS ==================== -->
+  <div class="toc avoid-break">
+    <h3 style="margin-top: 0; text-transform: uppercase; letter-spacing: 0.05em; color: #4f46e5;">Table of Contents</h3>
+    <ul>
+      <li><span>1. Project Setup & Workspace Initialization</span> <span class="page-ref">Section 01</span></li>
+      <li><span>2. Frontend Architecture & Website Development</span> <span class="page-ref">Section 02</span></li>
+      <li><span>3. Adding Portfolio Sections & Features</span> <span class="page-ref">Section 03</span></li>
+      <li><span>4. Creating & Setting Up the GitHub Repository</span> <span class="page-ref">Section 04</span></li>
+      <li><span>5. Pushing the Project to GitHub (17 Step Workflow)</span> <span class="page-ref">Section 05</span></li>
+      <li><span>6. Deploying the Website with GitHub Pages</span> <span class="page-ref">Section 06</span></li>
+      <li><span>7. Final Live Website Link, Verification & Submission Form</span> <span class="page-ref">Section 07</span></li>
+      <li><span>Appendix: Troubleshooting Common Pitfalls & FAQ</span> <span class="page-ref">Appendix</span></li>
+    </ul>
+  </div>
+
+  <!-- ==================== STEP 1 ==================== -->
+  <section class="guide-section">
+    <h2><span class="section-num">01</span> Project Setup & Workspace Initialization</h2>
+    <p>
+      The portfolio project is organized into a modular, clean folder structure that works directly in the browser and connects smoothly with GitHub Pages without requiring complex build steps or dependencies.
+    </p>
+
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-circle">A</span>
+        <span>Directory Hierarchy</span>
+      </div>
+      <p>
+        The project structure inside the <code>portfolio</code> folder:
+      </p>
+      <pre><code>portfolio/
+├── index.html                                   # Root HTML5 entrypoint
+├── style.css                                    # CSS3 styles (Dark/Light mode, animations)
+├── script.js                                    # Interactivity, typing effect, nav tracking
+├── README.md                                    # Documentation & project overview
+├── Yash_Portfolio_GitHub_Pages_Step_by_Step.pdf # Step-by-Step Assignment PDF Guide
+└── docs/
+    └── guide.html                               # Source documentation for PDF generation</code></pre>
+    </div>
+
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-circle">B</span>
+        <span>Local Setup Steps</span>
+      </div>
+      <ol style="padding-left: 18px; font-size: 8.5pt;">
+        <li style="margin-bottom: 4px;"><strong>Create Folder:</strong> Create a folder named <code>portfolio</code> on your machine.</li>
+        <li style="margin-bottom: 4px;"><strong>Add Core Files:</strong> Add <code>index.html</code>, <code>style.css</code>, and <code>script.js</code> into the folder.</li>
+        <li style="margin-bottom: 4px;"><strong>Open in VS Code:</strong> Launch Visual Studio Code and open the <code>portfolio</code> folder.</li>
+        <li style="margin-bottom: 4px;"><strong>Test Locally:</strong> Right-click <code>index.html</code> and choose <em>"Open with Live Server"</em> or double-click to view in Google Chrome / Microsoft Edge.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ==================== STEP 2 ==================== -->
+  <section class="guide-section">
+    <h2><span class="section-num">02</span> Website Development: Structure & Styling</h2>
+    <p>
+      The website is built with semantic HTML5 for structure and modern CSS3 for design and theming.
+    </p>
+
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-circle">A</span>
+        <span>Semantic Architecture</span>
+      </div>
+      <p>
+        Clean semantic sections ensure accessibility, structured hierarchy, and SEO performance:
+      </p>
+      <ul style="padding-left: 18px; font-size: 8.5pt; margin-bottom: 6px;">
+        <li><code>&lt;header&gt;</code>: Fixed navigation bar with logo branding, nav links, and Dark/Light toggle.</li>
+        <li><code>&lt;section id="hero"&gt;</code>: Headline, dynamic subtitle, developer terminal card, and CTAs.</li>
+        <li><code>&lt;section id="about"&gt;</code>: Full biography, Career Objective, and 4 Quick Overview cards.</li>
+        <li><code>&lt;section id="skills"&gt;</code>: Categorized technical skills (Java, Web, Android, AI/CV, Tools).</li>
+        <li><code>&lt;section id="projects"&gt;</code>: Showcase of 5 featured projects with descriptions and tags.</li>
+        <li><code>&lt;section id="education"&gt;</code>: MCA degree details and Currently Learning skills.</li>
+        <li><code>&lt;section id="contact"&gt;</code>: Social channels and interactive contact form.</li>
+      </ul>
+    </div>
+
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-circle">B</span>
+        <span>CSS3 Design System & Theming</span>
+      </div>
+      <p>
+        CSS custom properties enable instant transitions between dark and light themes:
+      </p>
+      <pre><code>:root {
+  --bg-primary: #0a0f1d;
+  --bg-card: rgba(17, 24, 39, 0.85);
+  --text-primary: #f9fafb;
+  --accent-primary: #6366f1; /* Indigo */
+  --accent-gradient: linear-gradient(135deg, #6366f1 0%, #38bdf8 100%);
+}
+
+[data-theme="light"] {
+  --bg-primary: #f8fafc;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --text-primary: #0f172a;
+  --accent-primary: #4f46e5;
+}</code></pre>
+    </div>
+  </section>
+
+  <div class="page-break"></div>
+
+  <!-- ==================== STEP 3 ==================== -->
+  <section class="guide-section">
+    <h2><span class="section-num">03</span> Adding Portfolio Sections & Features</h2>
+
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-circle">1</span>
+        <span>Hero Section & Typing Animation</span>
+      </div>
+      <p>
+        Headline: <em>"Hi, I'm Yash. I build useful digital experiences."</em><br>
+        Subtitle: Cycles dynamically through <em>Student Developer</em>, <em>Java & OOP Programmer</em>, <em>Android App Developer</em>, <em>AI & Computer Vision Explorer</em>, and <em>Web Developer</em>.
+      </p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-circle">2</span>
+        <span>About Me, Career Objective & Quick Overview</span>
+      </div>
+      <p>
+        Contains Yash's complete background, his Career Objective callout, and 4 modular overview cards:
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Focus Area</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>01</strong></td>
+            <td><strong>Problem Solving</strong></td>
+            <td>Developing logical thinking and programming skills through practical problems and projects.</td>
+          </tr>
+          <tr>
+            <td><strong>02</strong></td>
+            <td><strong>Software Development</strong></td>
+            <td>Building applications and websites using Java, HTML, CSS, JavaScript and Android technologies.</td>
+          </tr>
+          <tr>
+            <td><strong>03</strong></td>
+            <td><strong>Artificial Intelligence</strong></td>
+            <td>Exploring computer vision and AI-based applications such as face and emotion recognition.</td>
+          </tr>
+          <tr>
+            <td><strong>04</strong></td>
+            <td><strong>Continuous Learning</strong></td>
+            <td>Learning new technologies and improving development skills through hands-on projects.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-circle">3</span>
+        <span>Technical Skills Matrix</span>
+      </div>
+      <p>
+        Categorized into structured cards: <strong>Java Programming</strong> (Core Java, OOP), <strong>Web Development</strong> (HTML5, CSS3, JavaScript), <strong>Android Development</strong> (Java, XML, Android Studio), <strong>AI & Computer Vision</strong> (Face & Emotion Recognition), and <strong>Tools & Practices</strong> (Git, GitHub, Problem Solving).
+      </p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-circle">4</span>
+        <span>5 Featured Projects Showcase</span>
+      </div>
+      <ol style="padding-left: 18px; font-size: 8.5pt;">
+        <li><strong>Face & Emotion Recognition System:</strong> Computer vision and AI application detecting human faces and classifying emotions from facial expressions using Python and image processing.</li>
+        <li><strong>TraceX — Batch Traceability & Management System:</strong> Enterprise Java & Spring Boot application tracking products across their lifecycle with MySQL and REST APIs.</li>
+        <li><strong>Java Application Project:</strong> Structured academic project applying Object-Oriented Programming, modular classes, methods, and logical processing.</li>
+        <li><strong>Android Application:</strong> Mobile application built in Android Studio using Java and XML layouts for interactive UI components.</li>
+        <li><strong>Personal Portfolio Website:</strong> Modern responsive website deployed on GitHub Pages with Dark/Light theme switching.</li>
+      </ol>
+    </div>
+
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-circle">5</span>
+        <span>Education & Currently Learning Section</span>
+      </div>
+      <p>
+        Displays Yash's <strong>Master of Computer Applications (MCA)</strong> degree alongside an interactive skill-badge cloud highlighting Java, Web, Android, AI, Computer Vision, Data Structures, Database Management, and Git.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== STEP 4 ==================== -->
+  <section class="guide-section">
+    <h2><span class="section-num">04</span> Creating & Setting Up the GitHub Repository</h2>
+
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-circle">A</span>
+        <span>Repository Specifications</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Setting</th>
+            <th>Value</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Repository Name</strong></td>
+            <td><code>portfolio</code></td>
+            <td>Matches the assignment specification</td>
+          </tr>
+          <tr>
+            <td><strong>Repository Owner</strong></td>
+            <td><code>Yash-Maithani</code></td>
+            <td>User's GitHub account</td>
+          </tr>
+          <tr>
+            <td><strong>Repository Link</strong></td>
+            <td><code>https://github.com/Yash-Maithani/portfolio</code></td>
+            <td>Target remote repository URL</td>
+          </tr>
+          <tr>
+            <td><strong>Visibility</strong></td>
+            <td><strong>Public</strong></td>
+            <td>Mandatory for free GitHub Pages hosting</td>
+          </tr>
+          <tr>
+            <td><strong>Initialize with README</strong></td>
+            <td><strong>Unchecked</strong></td>
+            <td>We will push existing local files</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-circle">B</span>
+        <span>Creation Instructions</span>
+      </div>
+      <ol style="padding-left: 18px; font-size: 8.5pt;">
+        <li>Open your browser and navigate to <a href="https://github.com/new" target="_blank">github.com/new</a>.</li>
+        <li>Enter <code>portfolio</code> under <strong>Repository name</strong>.</li>
+        <li>Select <strong>Public</strong>. Leave <em>"Add a README file"</em> unchecked.</li>
+        <li>Click <strong>Create repository</strong>.</li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="page-break"></div>
+
+  <!-- ==================== STEP 5 ==================== -->
+  <section class="guide-section">
+    <h2><span class="section-num">05</span> Complete 17-Step GitHub Deployment Process</h2>
+    <p>
+      Follow this exact sequence to build, push, deploy, and verify your portfolio on GitHub Pages:
+    </p>
+
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-circle">1-4</span>
+        <span>Phase 1: Local Setup & Testing</span>
+      </div>
+      <ol style="padding-left: 18px; font-size: 8.5pt;">
+        <li><strong>Step 1:</strong> Create a folder named <code>portfolio</code>.</li>
+        <li><strong>Step 2:</strong> Add <code>index.html</code>, <code>style.css</code> and <code>script.js</code>.</li>
+        <li><strong>Step 3:</strong> Open the project folder in VS Code.</li>
+        <li><strong>Step 4:</strong> Develop and test the website in a browser.</li>
+      </ol>
+    </div>
+
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-circle">5-7</span>
+        <span>Phase 2: Repository & Git Push</span>
+      </div>
+      <ol style="padding-left: 18px; font-size: 8.5pt;" start="5">
+        <li><strong>Step 5:</strong> Create a new public GitHub repository named <code>portfolio</code>.</li>
+        <li><strong>Step 6:</strong> Open the terminal inside the project folder.</li>
+        <li><strong>Step 7:</strong> Run the terminal commands:</li>
+      </ol>
+      <pre><code>git init
+git add .
+git commit -m "Create portfolio website"
+git branch -M main
+git remote add origin https://github.com/Yash-Maithani/portfolio.git
+git push -u origin main</code></pre>
+      <div class="callout callout-info">
+        <strong>Alternative Web Upload:</strong> If Git CLI is not installed, click <em>"uploading an existing file"</em> on your new GitHub repo page, drag & drop all files, and click <em>Commit changes</em>.
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-circle">8-14</span>
+        <span>Phase 3: Activating GitHub Pages</span>
+      </div>
+      <ol style="padding-left: 18px; font-size: 8.5pt;" start="8">
+        <li><strong>Step 8:</strong> Open the repository on GitHub: <code>https://github.com/Yash-Maithani/portfolio</code>.</li>
+        <li><strong>Step 9:</strong> Go to <strong>Settings → Pages</strong> in the repository tabs.</li>
+        <li><strong>Step 10:</strong> Under <em>Build and deployment</em>, select <strong>Deploy from a branch</strong>.</li>
+        <li><strong>Step 11:</strong> Select the <strong>main</strong> branch from the dropdown.</li>
+        <li><strong>Step 12:</strong> Select <strong>/(root)</strong> as the folder.</li>
+        <li><strong>Step 13:</strong> Click <strong>Save</strong>.</li>
+        <li><strong>Step 14:</strong> Wait for GitHub Pages to deploy the website (approx. 60–90 seconds).</li>
+      </ol>
+    </div>
+
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-circle">15-17</span>
+        <span>Phase 4: Live Verification & Final Submission</span>
+      </div>
+      <ol style="padding-left: 18px; font-size: 8.5pt;" start="15">
+        <li><strong>Step 15:</strong> Open your live website URL: <code>https://Yash-Maithani.github.io/portfolio/</code>.</li>
+        <li><strong>Step 16:</strong> Test the live website (navigation, dark/light theme, mobile layout).</li>
+        <li><strong>Step 17:</strong> Submit the GitHub repository link, live website link and step-by-step PDF.</li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="page-break"></div>
+
+  <!-- ==================== STEP 6 & 7 ==================== -->
+  <section class="guide-section">
+    <h2><span class="section-num">06</span> Live Website Link & GitHub Pages Verification</h2>
+    <p>
+      GitHub Pages automatically provisions free SSL/TLS encryption. Ensure your published site matches the following checklist:
+    </p>
+
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-circle">✔</span>
+        <span>Post-Deployment Quality Verification</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Verification Item</th>
+            <th>Target Standard</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Live Website Link</strong></td>
+            <td><code>https://Yash-Maithani.github.io/portfolio/</code></td>
+            <td>[ Verified ]</td>
+          </tr>
+          <tr>
+            <td><strong>HTTPS Security</strong></td>
+            <td>Valid SSL certificate with green lock icon</td>
+            <td>[ Verified ]</td>
+          </tr>
+          <tr>
+            <td><strong>Responsive Mobile View</strong></td>
+            <td>Hamburger drawer navigation active on viewports &lt; 768px</td>
+            <td>[ Verified ]</td>
+          </tr>
+          <tr>
+            <td><strong>Dark / Light Mode</strong></td>
+            <td>Smooth transition with <code>localStorage</code> persistence</td>
+            <td>[ Verified ]</td>
+          </tr>
+          <tr>
+            <td><strong>Interactive Typing Effect</strong></td>
+            <td>Rotates through titles in hero header</td>
+            <td>[ Verified ]</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ==================== FINAL SUBMISSION ==================== -->
+  <section class="guide-section">
+    <h2><span class="section-num">07</span> Final Assignment Submission</h2>
+    <p>
+      Use the official submission details below for your assignment portal:
+    </p>
+
+    <div class="submission-box">
+      <h3 style="margin-top: 0; color: #4f46e5; text-transform: uppercase;">Final Submission Details</h3>
+
+      <div class="submission-row">
+        <span class="submission-label">Student Name:</span>
+        <span class="submission-input">Yash</span>
+      </div>
+      <div class="submission-row">
+        <span class="submission-label">GitHub Username:</span>
+        <span class="submission-input">Yash-Maithani</span>
+      </div>
+      <div class="submission-row">
+        <span class="submission-label">GitHub Repository Link:</span>
+        <span class="submission-input">https://github.com/Yash-Maithani/portfolio</span>
+      </div>
+      <div class="submission-row">
+        <span class="submission-label">Live Website Link:</span>
+        <span class="submission-input">https://Yash-Maithani.github.io/portfolio/</span>
+      </div>
+      <div class="submission-row">
+        <span class="submission-label">Step-by-Step PDF:</span>
+        <span class="submission-input">Yash_Portfolio_GitHub_Pages_Step_by_Step.pdf</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== APPENDIX ==================== -->
+  <section class="guide-section">
+    <h2><span class="section-num">AP</span> Appendix: Troubleshooting & Frequently Asked Questions</h2>
+
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-circle">!</span>
+        <span>Common Deployment Questions</span>
+      </div>
+      <ul style="padding-left: 18px; font-size: 8.5pt;">
+        <li style="margin-bottom: 4px;">
+          <strong>Why is my site showing 404 Not Found?</strong> GitHub Pages takes 1–3 minutes to build on first deployment. Check the <strong>Actions</strong> tab in your repository to confirm the build workflow has finished with a green checkmark. Also confirm that the file is strictly named lowercase <code>index.html</code>.
+        </li>
+        <li style="margin-bottom: 4px;">
+          <strong>Why isn't CSS or JS loading?</strong> Ensure all paths in <code>index.html</code> are relative (e.g. <code>style.css</code> and <code>script.js</code>, not absolute local drive paths like <code>C:/...</code>).
+        </li>
+        <li style="margin-bottom: 4px;">
+          <strong>How do I update my portfolio later?</strong> Simply edit your files, then run <code>git add .</code>, <code>git commit -m "Update portfolio"</code>, and <code>git push</code>. GitHub Pages will automatically deploy the changes within 60 seconds!
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</body>
+</html>
