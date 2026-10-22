@@ -59,7 +59,7 @@ Without any setup, the form opens the visitor's email app with their message fil
 
 ## Contact
 
-- Email: [yashmaithani425@gmail.com](mailto:yashmaithani425@gmail.com)
+- Email: [yashmaithani4@gmail.com](mailto:yashmaithani4@gmail.com)
 - LinkedIn: [yash-maithani-64b970260](https://www.linkedin.com/in/yash-maithani-64b970260)
 - GitHub: [Yash-Maithani](https://github.com/Yash-Maithani)
 
