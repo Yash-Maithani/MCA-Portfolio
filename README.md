@@ -29,7 +29,6 @@ My personal portfolio website. I'm an MCA student at **Graphic Era University** 
 | --- | --- | --- | --- |
 | **Face & Emotion Recognition** | Detects faces and classifies emotions from facial expressions in images and video. | Python, Computer Vision, AI | [Face-Insight](https://github.com/Yash-Maithani/Face-Insight) |
 | **TraceX** | Batch traceability and inventory management system linking products to digital records. | Java, Spring Boot, MySQL, REST | [TraceX](https://github.com/Yash-Maithani/TraceX-Smart-Product-Traceability-and-Inventory-Management-System-) |
-| **Java Programs** | Object-oriented Java applications covering classes, data structures and problem solving. | Java, OOP | [JAVA-PROGRAMS](https://github.com/Yash-Maithani/JAVA-PROGRAMS) |
 | **Android Application** | Mobile app built with XML layouts, event handling and Java application logic. | Java, Android SDK, XML | — |
 | **This Portfolio** | The site you're looking at. | HTML, CSS, JavaScript | [MCA-Portfolio](https://github.com/Yash-Maithani/MCA-Portfolio) |
 
