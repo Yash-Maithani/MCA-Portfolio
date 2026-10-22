@@ -1,7 +1,7 @@
 /**
- * PORTFOLIO JAVASCRIPT - YASH.DEV
- * Features: Dark/Light Mode, Mobile Navigation, Typing Effect,
- * Active Nav Highlights, and Contact Form Feedback.
+ * Portfolio scripts, Yash Maithani
+ * Dark/light theme, mobile navigation, active nav highlighting
+ * and the contact form.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -57,53 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 4. Typing Effect for Hero Subtitle
-  const typedTextSpan = document.getElementById('typedText');
-  if (typedTextSpan) {
-    const roles = [
-      'I build useful digital experiences.',
-      'Student Developer',
-      'Java & OOP Programmer',
-      'Android App Developer',
-      'AI & Computer Vision Explorer',
-      'Web Developer (HTML/CSS/JS)'
-    ];
-    let roleIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    const typingSpeed = 100;
-    const deletingSpeed = 50;
-    const delayBetweenWords = 1800;
-
-    function type() {
-      const currentRole = roles[roleIndex];
-      
-      if (isDeleting) {
-        typedTextSpan.textContent = currentRole.substring(0, charIndex - 1);
-        charIndex--;
-      } else {
-        typedTextSpan.textContent = currentRole.substring(0, charIndex + 1);
-        charIndex++;
-      }
-
-      let typeDelay = isDeleting ? deletingSpeed : typingSpeed;
-
-      if (!isDeleting && charIndex === currentRole.length) {
-        typeDelay = delayBetweenWords;
-        isDeleting = true;
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        roleIndex = (roleIndex + 1) % roles.length;
-        typeDelay = 400;
-      }
-
-      setTimeout(type, typeDelay);
-    }
-
-    setTimeout(type, 800);
-  }
-
-  // 5. Active Navigation Link on Scroll (Intersection Observer)
+  // 4. Active Navigation Link on Scroll (Intersection Observer)
   const sections = document.querySelectorAll('section[id]');
   
   if ('IntersectionObserver' in window && sections.length > 0) {
@@ -130,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => observer.observe(section));
   }
 
-  // 6. Contact Form Submission Handler
+  // 5. Contact Form Submission Handler
   // If the form has a data-endpoint (e.g. a Formspree URL), the message is POSTed there.
   // Otherwise it falls back to opening the visitor's email app with the message pre-filled.
   const contactForm = document.getElementById('contactForm');
@@ -156,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!endpoint) {
         const subject = formData.get('subject');
-        const body = `${formData.get('message')}\n\n— ${formData.get('name')} (${formData.get('email')})`;
+        const body = `${formData.get('message')}\n\nFrom: ${formData.get('name')} (${formData.get('email')})`;
         window.location.href = `mailto:${contactForm.dataset.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         showAlert('info', 'Opening your email app with the message ready to send.');
         return;

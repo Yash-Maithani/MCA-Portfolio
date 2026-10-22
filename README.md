@@ -1,60 +1,47 @@
-# Yash Maithani — Developer Portfolio
+# Yash Maithani: Portfolio
 
-[![Live Site](https://img.shields.io/badge/Live-yash--maithani.github.io-6366f1?style=for-the-badge&logo=githubpages&logoColor=white)](https://yash-maithani.github.io/MCA-Portfolio/)
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](#tech-stack)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](#tech-stack)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](#tech-stack)
+My personal portfolio site. I'm an MCA student at Graphic Era University and I build projects in Java, Spring Boot, Android and Python.
 
-My personal portfolio website. I'm an MCA student at **Graphic Era University** working with Java, web technologies, Android and AI / computer vision.
+Live site: [yash-maithani.github.io/MCA-Portfolio](https://yash-maithani.github.io/MCA-Portfolio/)
 
-**🔗 Live site: [yash-maithani.github.io/MCA-Portfolio](https://yash-maithani.github.io/MCA-Portfolio/)**
+![Screenshot of the portfolio home page](assets/preview.png)
 
-![Portfolio preview](assets/preview.png)
+## What's on the site
 
----
+- An introduction and the kind of role I'm looking for
+- The languages, frameworks and tools I've used
+- My projects, each linked to its source code
+- My education
+- A contact form and links to my email, GitHub and LinkedIn
 
-## Features
+The site has light and dark themes (the choice is saved in the browser), works on phones and desktops, and supports keyboard navigation.
 
-- **Responsive layout.** Works from 320px phones up to wide desktops, with a slide-out menu on mobile.
-- **Dark / light theme.** Toggle in the navbar; the choice is remembered with `localStorage`.
-- **Typing animation** in the hero that cycles through roles.
-- **Active section highlighting** in the navbar using `IntersectionObserver`.
-- **Working contact form.** Sends through [Formspree](https://formspree.io) when an endpoint is configured, otherwise opens the visitor's email app with the message pre-filled.
-- **Accessible.** Visible keyboard focus styles, labelled form fields, ARIA labels on icon buttons, and a live region for form status messages.
-- **No build step.** Plain HTML, CSS and JavaScript; no frameworks or dependencies to install.
+## Projects
 
-## Projects Featured
-
-| Project | Description | Tech | Code |
+| Project | What it is | Built with | Code |
 | --- | --- | --- | --- |
-| **Face & Emotion Recognition** | Detects faces and classifies emotions from facial expressions in images and video. | Python, Computer Vision, AI | [Face-Insight](https://github.com/Yash-Maithani/Face-Insight) |
-| **TraceX** | Batch traceability and inventory management system linking products to digital records. | Java, Spring Boot, MySQL, REST | [TraceX](https://github.com/Yash-Maithani/TraceX-Smart-Product-Traceability-and-Inventory-Management-System-) |
-| **Android Application** | Mobile app built with XML layouts, event handling and Java application logic. | Java, Android SDK, XML | — |
-| **This Portfolio** | The site you're looking at. | HTML, CSS, JavaScript | [MCA-Portfolio](https://github.com/Yash-Maithani/MCA-Portfolio) |
+| Face and Emotion Recognition | Finds faces in images and video and classifies the emotion on each one | Python, computer vision | [Face-Insight](https://github.com/Yash-Maithani/Face-Insight) |
+| TraceX | Tracks product batches and links them to their digital records | Java, Spring Boot, MySQL, REST | [TraceX](https://github.com/Yash-Maithani/TraceX-Smart-Product-Traceability-and-Inventory-Management-System-) |
+| Android App | A Java and XML app for learning Android UI and event handling | Java, Android SDK | Not public |
+| This portfolio | The site in this repository | HTML, CSS, JavaScript | You're here |
 
-## Tech Stack
+## How it's built
 
-- **HTML5** — semantic page structure
-- **CSS3** — custom properties for theming, Grid and Flexbox layouts, media queries
-- **JavaScript (ES6+)** — theme switching, typing effect, scroll spy, contact form handling
-- **[Font Awesome](https://fontawesome.com)** icons and **[Google Fonts](https://fonts.google.com)** (Plus Jakarta Sans, JetBrains Mono)
-- **GitHub Pages** for hosting
-
-## Project Structure
+Plain HTML, CSS and JavaScript with no frameworks and no build step. Icons come from Font Awesome and the fonts are Plus Jakarta Sans and JetBrains Mono from Google Fonts. GitHub Pages serves the site from the root of the `main` branch and redeploys it on every push.
 
 ```text
 MCA-Portfolio/
-├── index.html      # Page markup and content
-├── style.css       # Styles, dark/light theme variables, responsive rules
-├── script.js       # Theme toggle, mobile menu, typing effect, scroll spy, contact form
-├── favicon.svg     # Site icon
+├── index.html      page content
+├── style.css       styles and the light/dark theme colours
+├── script.js       theme toggle, mobile menu, nav highlighting, contact form
+├── favicon.svg     site icon
 └── assets/
-    └── preview.png # Screenshot used in this README
+    └── preview.png screenshot used in this README
 ```
 
-## Running Locally
+## Running it locally
 
-No installation needed. Clone the repo and open `index.html` in a browser, or serve it locally:
+Open `index.html` in a browser, or serve the folder so it behaves like the live site:
 
 ```bash
 git clone https://github.com/Yash-Maithani/MCA-Portfolio.git
@@ -62,26 +49,18 @@ cd MCA-Portfolio
 python -m http.server 8000
 ```
 
-Then visit <http://localhost:8000>.
+Then go to <http://localhost:8000>.
 
-## Contact Form Setup
+## Contact form
 
-By default the form opens the visitor's email app. To receive messages directly:
-
-1. Create a free form at [formspree.io](https://formspree.io).
-2. Copy the form's endpoint (looks like `https://formspree.io/f/abcdwxyz`).
-3. Paste it into the `data-endpoint` attribute of the `<form id="contactForm">` tag in `index.html`.
-
-## Deployment
-
-The site is served by GitHub Pages from the `main` branch root (**Settings → Pages → Deploy from a branch → `main` / `(root)`**). Every push to `main` redeploys it automatically within a minute or two.
+Without any setup, the form opens the visitor's email app with their message filled in. To have messages delivered directly instead, create a free form on [Formspree](https://formspree.io) and put its URL (for example `https://formspree.io/f/abcdwxyz`) in the `data-endpoint` attribute of the form in `index.html`.
 
 ## Contact
 
-- **Email:** [yashmaithani425@gmail.com](mailto:yashmaithani425@gmail.com)
-- **LinkedIn:** [linkedin.com/in/yash-maithani-64b970260](https://www.linkedin.com/in/yash-maithani-64b970260)
-- **GitHub:** [@Yash-Maithani](https://github.com/Yash-Maithani)
+- Email: [yashmaithani425@gmail.com](mailto:yashmaithani425@gmail.com)
+- LinkedIn: [yash-maithani-64b970260](https://www.linkedin.com/in/yash-maithani-64b970260)
+- GitHub: [Yash-Maithani](https://github.com/Yash-Maithani)
 
 ## License
 
-Distributed under the MIT License.
+MIT
