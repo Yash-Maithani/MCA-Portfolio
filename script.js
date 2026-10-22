@@ -130,32 +130,59 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => observer.observe(section));
   }
 
-  // 6. Interactive Contact Form Submission Handler
+  // 6. Contact Form Submission Handler
+  // If the form has a data-endpoint (e.g. a Formspree URL), the message is POSTed there.
+  // Otherwise it falls back to opening the visitor's email app with the message pre-filled.
   const contactForm = document.getElementById('contactForm');
   const formAlert = document.getElementById('formAlert');
   const submitBtn = document.getElementById('submitBtn');
+  let alertTimer;
+
+  function showAlert(type, message) {
+    clearTimeout(alertTimer);
+    formAlert.className = `form-alert ${type}`;
+    formAlert.textContent = message;
+    alertTimer = setTimeout(() => {
+      formAlert.className = 'form-alert';
+    }, 8000);
+  }
 
   if (contactForm && formAlert) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      
+
+      const endpoint = contactForm.dataset.endpoint;
+      const formData = new FormData(contactForm);
+
+      if (!endpoint) {
+        const subject = formData.get('subject');
+        const body = `${formData.get('message')}\n\n— ${formData.get('name')} (${formData.get('email')})`;
+        window.location.href = `mailto:${contactForm.dataset.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        showAlert('info', 'Opening your email app with the message ready to send.');
+        return;
+      }
+
       // Visual feedback
       const originalBtnText = submitBtn.innerHTML;
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>Sending...</span>';
 
-      setTimeout(() => {
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: formData,
+          headers: { Accept: 'application/json' }
+        });
+        if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+
+        showAlert('success', 'Thank you! Your message has been sent. I will get back to you shortly.');
+        contactForm.reset();
+      } catch (err) {
+        showAlert('error', `Sorry, the message could not be sent. Please email me directly at ${contactForm.dataset.email}.`);
+      } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnText;
-
-        formAlert.className = 'form-alert success';
-        formAlert.textContent = 'Thank you! Your message has been sent successfully. I will get back to you shortly.';
-        contactForm.reset();
-
-        setTimeout(() => {
-          formAlert.style.display = 'none';
-        }, 6000);
-      }, 1000);
+      }
     });
   }
 });

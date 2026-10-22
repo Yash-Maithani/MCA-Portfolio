@@ -99,8 +99,18 @@ img {
 
 button, input, textarea {
   font-family: inherit;
-  outline: none;
   border: none;
+}
+
+/* Visible focus ring for keyboard navigation */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 /* ---------------- Layout Container ---------------- */
@@ -370,6 +380,11 @@ button, input, textarea {
   gap: 3rem;
 }
 
+/* Let grid children shrink below their content width (prevents mobile overflow) */
+.hero-container > * {
+  min-width: 0;
+}
+
 .badge-status {
   display: inline-flex;
   align-items: center;
@@ -573,6 +588,8 @@ button, input, textarea {
 .json-code {
   color: var(--text-primary);
   line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .json-key {
@@ -840,7 +857,7 @@ button, input, textarea {
 /* ---------------- Skills Section ---------------- */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
   gap: 1.75rem;
 }
 
@@ -929,7 +946,7 @@ button, input, textarea {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
   gap: 2rem;
 }
 
@@ -1119,6 +1136,11 @@ button, input, textarea {
   align-items: flex-start;
 }
 
+.contact-wrapper > *,
+.contact-details {
+  min-width: 0;
+}
+
 .contact-info {
   display: flex;
   flex-direction: column;
@@ -1168,6 +1190,7 @@ button, input, textarea {
   font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
+  overflow-wrap: anywhere;
 }
 
 .contact-details a:hover {
@@ -1208,6 +1231,11 @@ button, input, textarea {
 
 .form-group input:focus, .form-group textarea:focus {
   border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.form-group input:focus-visible, .form-group textarea:focus-visible {
+  outline: none;
 }
 
 .form-alert {
@@ -1223,6 +1251,20 @@ button, input, textarea {
   background: rgba(16, 185, 129, 0.15);
   color: #10b981;
   border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.form-alert.error {
+  display: block;
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.form-alert.info {
+  display: block;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  border: 1px solid var(--border-color);
 }
 
 /* ---------------- Footer ---------------- */
