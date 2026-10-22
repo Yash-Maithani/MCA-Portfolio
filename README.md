@@ -14,12 +14,13 @@ Live site: [yash-maithani.github.io/MCA-Portfolio](https://yash-maithani.github.
 - My education
 - A contact form and links to my email, GitHub and LinkedIn
 
-The site has light and dark themes (the choice is saved in the browser), works on phones and desktops, and supports keyboard navigation.
+The site has light and dark themes (the choice is saved in the browser), works on phones and desktops, and supports keyboard navigation. Cards fade in as you scroll and a small bubble sort runs in the header card; both switch off when the visitor's system asks for reduced motion.
 
 ## Projects
 
 | Project | What it is | Built with | Code |
 | --- | --- | --- | --- |
+| AlgoTrace | Steps through 20 sorting, searching and graph algorithms one move at a time, with the reason and the code line for each step. [Live demo](https://algotrace-zxiw.onrender.com) | Python, Flask, JavaScript, D3.js | [AlgoTrace](https://github.com/Yash-Maithani/AlgoTrace) |
 | Face and Emotion Recognition | Finds faces in images and video and classifies the emotion on each one | Python, computer vision | [Face-Insight](https://github.com/Yash-Maithani/Face-Insight) |
 | TraceX | Tracks product batches and links them to their digital records | Java, Spring Boot, MySQL, REST | [TraceX](https://github.com/Yash-Maithani/TraceX-Smart-Product-Traceability-and-Inventory-Management-System-) |
 | Android App | A Java and XML app for learning Android UI and event handling | Java, Android SDK | Not public |
@@ -33,10 +34,11 @@ Plain HTML, CSS and JavaScript with no frameworks and no build step. Icons come 
 MCA-Portfolio/
 ├── index.html      page content
 ├── style.css       styles and the light/dark theme colours
-├── script.js       theme toggle, mobile menu, nav highlighting, contact form
+├── script.js       theme toggle, mobile menu, nav highlighting, contact form, animations
 ├── favicon.svg     site icon
 └── assets/
-    └── preview.png screenshot used in this README
+    ├── algotrace.jpg   AlgoTrace screenshot for the featured project
+    └── preview.png     screenshot used in this README
 ```
 
 ## Running it locally

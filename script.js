@@ -1,7 +1,7 @@
 /**
  * Portfolio scripts, Yash Maithani
- * Dark/light theme, mobile navigation, active nav highlighting
- * and the contact form.
+ * Dark/light theme, mobile navigation, active nav highlighting,
+ * the contact form, scroll reveal and the hero sorting animation.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -138,5 +138,117 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.innerHTML = originalBtnText;
       }
     });
+  }
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 6. Reveal cards as they scroll into view
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    const revealTargets = document.querySelectorAll(
+      '.section-header, .about-text-card, .stat-card, .skill-category-card, .featured-project, ' +
+      '.project-card, .education-card, .learning-card, .contact-card, .contact-form'
+    );
+
+    revealTargets.forEach(el => {
+      el.setAttribute('data-reveal', '');
+      // Stagger cards that sit side by side in the same grid
+      const index = Array.prototype.indexOf.call(el.parentElement.children, el);
+      el.style.transitionDelay = `${Math.min(index, 3) * 80}ms`;
+    });
+    document.documentElement.classList.add('reveal-on');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          el.classList.add('is-visible');
+          revealObserver.unobserve(el);
+          // Hand the element back to its own hover transitions once it has appeared
+          setTimeout(() => {
+            el.removeAttribute('data-reveal');
+            el.classList.remove('is-visible');
+            el.style.transitionDelay = '';
+          }, 1000);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+    revealTargets.forEach(el => revealObserver.observe(el));
+  }
+
+  // 7. Bubble sort animation in the hero card
+  const sortViz = document.getElementById('sortViz');
+  if (sortViz) {
+    const size = 12;
+    const shuffled = () => Array.from({ length: size }, (_, i) => i + 1).sort(() => Math.random() - 0.5);
+    let values = shuffled();
+    const bars = values.map(() => {
+      const bar = document.createElement('span');
+      bar.className = 'sort-bar';
+      sortViz.appendChild(bar);
+      return bar;
+    });
+
+    const draw = (compared = []) => {
+      bars.forEach((bar, i) => {
+        bar.style.height = `${(values[i] / size) * 100}%`;
+        bar.classList.toggle('is-compared', compared.includes(i));
+      });
+    };
+
+    if (reduceMotion) {
+      values.sort((a, b) => a - b);
+      draw();
+    } else {
+      let pass = 0;
+      let j = 0;
+      let timer = null;
+      let inView = true;
+
+      const step = () => {
+        if (pass >= size - 1) {
+          draw();
+          bars.forEach(bar => bar.classList.add('is-done'));
+          timer = setTimeout(() => {
+            values = shuffled();
+            pass = 0;
+            j = 0;
+            bars.forEach(bar => bar.classList.remove('is-done'));
+            draw();
+            schedule(700);
+          }, 1800);
+          return;
+        }
+        if (values[j] > values[j + 1]) {
+          [values[j], values[j + 1]] = [values[j + 1], values[j]];
+        }
+        draw([j, j + 1]);
+        j++;
+        if (j >= size - 1 - pass) {
+          j = 0;
+          pass++;
+        }
+        schedule(260);
+      };
+
+      const schedule = (delay) => {
+        clearTimeout(timer);
+        if (inView && !document.hidden) timer = setTimeout(step, delay);
+      };
+
+      // Only run while the card is on screen and the tab is visible
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+          inView = entries[0].isIntersecting;
+          if (inView) schedule(400); else clearTimeout(timer);
+        }).observe(sortViz);
+      }
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) clearTimeout(timer); else schedule(400);
+      });
+
+      draw();
+      schedule(900);
+    }
   }
 });

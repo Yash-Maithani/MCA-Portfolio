@@ -62,13 +62,13 @@
         <div class="hero-content">
           <div class="badge-status">MCA student, Graphic Era University</div>
           <h1 class="hero-title">
-            Hi, I'm <span class="text-accent">Yash Maithani</span>.
+            Hi, I'm <span class="text-accent">Yash Maithani</span><span class="text-accent-2">.</span>
           </h1>
           <p class="hero-subtitle">
             I build Java backends, Android apps and computer vision projects.
           </p>
           <p class="hero-description">
-            I'm studying for a Master of Computer Applications. Outside coursework I build my own projects, like TraceX, a Spring Boot and MySQL system for tracking product batches, and a Python system that recognises emotions from faces.
+            I'm studying for a Master of Computer Applications. Outside coursework I build my own projects, like AlgoTrace, a live site that steps through 20 algorithms one move at a time, and TraceX, a Spring Boot and MySQL system for tracking product batches.
           </p>
           <div class="hero-cta">
             <a href="#projects" class="btn btn-primary">
@@ -90,6 +90,8 @@
 
         <div class="hero-visual">
           <aside class="hero-facts" aria-labelledby="factsTitle">
+            <div class="sort-viz" id="sortViz" aria-hidden="true"></div>
+            <p class="sort-viz-caption">Bubble sort, one comparison at a time</p>
             <h2 class="hero-facts-title" id="factsTitle">At a glance</h2>
             <dl class="facts-list">
               <div>
@@ -102,11 +104,11 @@
               </div>
               <div>
                 <dt>Frameworks and tools</dt>
-                <dd>Spring Boot, MySQL, Android SDK, Git</dd>
+                <dd>Spring Boot, Flask, MySQL, Android SDK, Git</dd>
               </div>
               <div>
                 <dt>Featured project</dt>
-                <dd><a href="https://github.com/Yash-Maithani/TraceX-Smart-Product-Traceability-and-Inventory-Management-System-" target="_blank" rel="noopener noreferrer">TraceX</a>, batch traceability system</dd>
+                <dd><a href="#algotrace">AlgoTrace</a>, an algorithm visualizer <span class="live-tag"><span class="live-dot"></span>Live</span></dd>
               </div>
             </dl>
           </aside>
@@ -126,13 +128,13 @@
           <div class="about-text-card">
             <h3>I learn a technology by building something with it.</h3>
             <p>
-              I started my MCA at Graphic Era University in 2025. Alongside coursework I've built my own projects: a REST backend with a database, an Android app, a computer vision system and this website.
+              I started my MCA at Graphic Era University in 2025. Alongside coursework I've built my own projects: an algorithm visualizer that's live on the web, a REST backend with a database, an Android app, a computer vision system and this website.
             </p>
             <p>
               Right now I'm working mostly with Java and Spring Boot, Android, and computer vision in Python. I'm also practising data structures and algorithms. You can find most of my code on GitHub.
             </p>
 
-            <div class="career-objective-box">
+            <div class="career-objective-box accent-2">
               <h4><i class="fa-solid fa-bullseye"></i> What I'm looking for</h4>
               <p>
                 An internship or entry-level software development role where I can work on real projects with experienced developers. I'm most interested in backend development and AI.
@@ -210,6 +212,7 @@
               <span class="skill-tag"><i class="fa-brands fa-html5"></i> HTML5</span>
               <span class="skill-tag"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
               <span class="skill-tag"><i class="fa-brands fa-js"></i> JavaScript</span>
+              <span class="skill-tag">D3.js</span>
               <span class="skill-tag">Responsive layouts</span>
               <span class="skill-tag">GitHub Pages</span>
             </div>
@@ -238,13 +241,14 @@
             <div class="category-header">
               <div class="category-icon"><i class="fa-solid fa-eye"></i></div>
               <div>
-                <h3>AI and Computer Vision</h3>
-                <span class="category-sub">Python</span>
+                <h3>Python and Computer Vision</h3>
+                <span class="category-sub">Flask, image processing</span>
               </div>
             </div>
-            <p class="skill-desc">Detecting faces in images and video and classifying facial expressions.</p>
+            <p class="skill-desc">Flask web apps, and detecting faces in images and video to classify facial expressions.</p>
             <div class="skills-tags">
               <span class="skill-tag"><i class="fa-brands fa-python"></i> Python</span>
+              <span class="skill-tag">Flask</span>
               <span class="skill-tag">Computer Vision</span>
               <span class="skill-tag">Face Detection</span>
               <span class="skill-tag">Image Processing</span>
@@ -256,14 +260,16 @@
             <div class="category-header">
               <div class="category-icon"><i class="fa-brands fa-git-alt"></i></div>
               <div>
-                <h3>Tools and Problem Solving</h3>
-                <span class="category-sub">Version control, algorithms</span>
+                <h3>Tools, Testing and Problem Solving</h3>
+                <span class="category-sub">Version control, tests, algorithms</span>
               </div>
             </div>
-            <p class="skill-desc">Git and GitHub for version control, and practice with data structures and algorithms.</p>
+            <p class="skill-desc">Git and GitHub for version control, automated tests with pytest and Playwright, and practice with data structures and algorithms.</p>
             <div class="skills-tags">
               <span class="skill-tag"><i class="fa-brands fa-git-alt"></i> Git</span>
               <span class="skill-tag"><i class="fa-brands fa-github"></i> GitHub</span>
+              <span class="skill-tag">pytest</span>
+              <span class="skill-tag">Playwright</span>
               <span class="skill-tag">Data Structures</span>
               <span class="skill-tag">Algorithms</span>
               <span class="skill-tag">VS Code</span>
@@ -281,6 +287,47 @@
           <p class="section-subtitle">Things I've built, with links to the code.</p>
           <div class="title-underline"></div>
         </div>
+
+        <!-- Featured: AlgoTrace -->
+        <article class="featured-project" id="algotrace">
+          <a class="featured-media" href="https://algotrace-zxiw.onrender.com" target="_blank" rel="noopener noreferrer" aria-label="Open the AlgoTrace live demo">
+            <img src="assets/algotrace.jpg" width="960" height="613" loading="lazy" alt="AlgoTrace running quick sort: bar chart mid-sort with the partition code highlighted beside it">
+          </a>
+          <div class="featured-content">
+            <div class="featured-badges">
+              <span class="featured-badge">Featured</span>
+              <span class="live-tag"><span class="live-dot"></span>Live demo</span>
+            </div>
+            <h3 class="project-title">AlgoTrace: Algorithm Visualizer</h3>
+            <p class="project-description">
+              Plays 20 sorting, searching and graph algorithms one step at a time on input you choose. Beside every move it shows a plain-language reason, the line of code that ran and a running count of the work done.
+            </p>
+            <ul class="featured-points">
+              <li>8 sorts, 3 searches, 8 graph algorithms and A* on a grid you draw</li>
+              <li>Code shown in pseudocode, Python, C, C++ and Java with the running line highlighted</li>
+              <li>Predict mode, side-by-side compare, and recursion trees for merge and quick sort</li>
+              <li>Keyboard friendly, light and dark themes, tested with pytest and Playwright</li>
+            </ul>
+            <div class="project-tech-stack">
+              <span>Python</span>
+              <span>Flask</span>
+              <span>JavaScript</span>
+              <span>D3.js</span>
+              <span>Playwright</span>
+            </div>
+            <div class="featured-actions">
+              <a href="https://algotrace-zxiw.onrender.com" target="_blank" rel="noopener noreferrer" class="btn btn-accent">
+                <span>Open live demo</span>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <a href="https://github.com/Yash-Maithani/AlgoTrace" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                <i class="fa-brands fa-github"></i>
+                <span>Source code</span>
+              </a>
+            </div>
+            <p class="featured-note">Hosted on a free plan, so the first load can take about 30 seconds.</p>
+          </div>
+        </article>
 
         <div class="projects-grid">
           <!-- Project 1: Face & Emotion Recognition -->
