@@ -32,6 +32,14 @@
   --glow-1: 0 0 0 1px rgba(45, 212, 191, 0.6), 0 0 22px rgba(45, 212, 191, 0.35);
   --glow-2: 0 0 0 1px rgba(251, 146, 60, 0.6), 0 0 22px rgba(251, 146, 60, 0.35);
 
+  /* Cursor swarm colours (HTML, CSS, JS) and the text on their labels */
+  --builder-1: var(--accent-primary);
+  --builder-1-ink: var(--accent-contrast);
+  --builder-2: var(--accent-2);
+  --builder-2-ink: var(--accent-2-contrast);
+  --builder-3: #a78bfa;
+  --builder-3-ink: #1e1b4b;
+
   --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
   --navbar-bg: rgba(10, 15, 29, 0.85);
 
@@ -70,6 +78,9 @@
   /* Hover glows are orange in light mode */
   --glow-1: 0 0 0 2px rgba(249, 115, 22, 0.75), 0 0 26px 2px rgba(249, 115, 22, 0.45);
   --glow-2: 0 0 0 2px rgba(249, 115, 22, 0.8), 0 0 26px 2px rgba(249, 115, 22, 0.5);
+
+  --builder-3: #6d28d9;
+  --builder-3-ink: #ffffff;
 
   --card-shadow: 0 10px 25px -5px rgba(154, 52, 18, 0.10);
   --navbar-bg: rgba(253, 246, 239, 0.88);
@@ -1420,34 +1431,121 @@ button, input, textarea {
     animation: live-ping 2s ease-out infinite;
   }
 
-  /* Scroll reveal: only applied once script.js confirms it can run */
-  .reveal-on [data-reveal] {
+  /* Cursor swarm build: only applied once script.js confirms it can run */
+  .build-on .hero-content > *,
+  .build-on .hero-facts {
+    animation: none;
+  }
+
+  .build-on [data-build] {
+    transition: color 0.5s ease, background-color 0.5s ease, border-color 0.5s ease,
+      box-shadow 0.5s ease, outline-color 0.4s ease;
+  }
+
+  .build-on [data-build] > * {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  /* Waiting to be built: an empty dashed outline */
+  .build-on [data-build="pending"],
+  .build-on [data-build="active"] {
+    color: transparent;
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    outline: 1.5px dashed var(--border-color-hover);
+    outline-offset: 4px;
+  }
+
+  .build-on [data-build="pending"] > *,
+  .build-on [data-build="active"] > * {
     opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(8px);
   }
 
-  .reveal-on [data-reveal].is-visible {
+  /* Selected by a cursor, just before it fills in */
+  .build-on [data-build="active"] {
+    outline: 2px solid var(--builder, var(--accent-primary));
+  }
+
+  .build-on [data-build="done"] {
+    outline: 2px solid transparent;
+    outline-offset: 4px;
+  }
+
+  .build-layer {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1001;
+  }
+
+  .build-cursor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: var(--b);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    will-change: transform;
+  }
+
+  .build-cursor.is-shown {
     opacity: 1;
-    transform: none;
   }
-}
 
-/* Cursor swarm canvas (created by script.js on mouse devices only) */
-.cursor-swarm {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1001;
+  .build-cursor svg {
+    display: block;
+    fill: currentColor;
+    stroke: var(--bg-primary);
+    stroke-width: 1.3;
+    stroke-linejoin: round;
+    transform-origin: 2px 2px;
+    transition: transform 0.12s ease;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
+  }
+
+  .build-cursor.is-clicking svg {
+    transform: scale(0.82);
+  }
+
+  .build-cursor-label {
+    position: absolute;
+    top: 17px;
+    left: 13px;
+    padding: 2px 7px;
+    border-radius: 2px 6px 6px 6px;
+    background-color: var(--b);
+    color: var(--b-ink);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+
+  .builder-1 { --b: var(--builder-1); --b-ink: var(--builder-1-ink); }
+  .builder-2 { --b: var(--builder-2); --b-ink: var(--builder-2-ink); }
+  .builder-3 { --b: var(--builder-3); --b-ink: var(--builder-3-ink); }
+
+  @keyframes build-ripple {
+    from { opacity: 0.9; transform: scale(0.3); }
+    to { opacity: 0; transform: scale(1.6); }
+  }
+
+  .build-ripple {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    margin: -12px 0 0 -12px;
+    border: 2px solid var(--b);
+    border-radius: 50%;
+    animation: build-ripple 0.5s ease-out forwards;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cursor-swarm {
-    display: none;
-  }
-
   html {
     scroll-behavior: auto;
   }
