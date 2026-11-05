@@ -1,7 +1,7 @@
 /**
  * Portfolio scripts, Yash Maithani
  * Dark/light theme, mobile navigation, active nav highlighting,
- * the contact form, scroll reveal and the hero sorting animation.
+ * the contact form, scroll reveal, the hero sorting animation and the cursor swarm.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -250,5 +250,116 @@ document.addEventListener('DOMContentLoaded', () => {
       draw();
       schedule(900);
     }
+  }
+
+  // 8. Cursor swarm: a few dots that follow the mouse and orbit it
+  // Only on devices with a real mouse, and never when reduced motion is requested.
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (!reduceMotion && finePointer) {
+    const canvas = document.createElement('canvas');
+    canvas.className = 'cursor-swarm';
+    canvas.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+
+    const COUNT = 24;
+    const mouse = { x: -100, y: -100, active: false };
+    let width = 0;
+    let height = 0;
+    let colors = [];
+    let frame = null;
+    let alpha = 0;
+
+    const particles = Array.from({ length: COUNT }, (_, i) => ({
+      x: -100,
+      y: -100,
+      vx: 0,
+      vy: 0,
+      angle: (i / COUNT) * Math.PI * 2,
+      radius: 14 + Math.random() * 26,
+      speed: (0.012 + Math.random() * 0.02) * (i % 2 ? 1 : -1),
+      ease: 0.04 + Math.random() * 0.05,
+      size: 1.4 + Math.random() * 1.8,
+      tone: i % 3 === 0 ? 1 : 0
+    }));
+
+    const readColors = () => {
+      const styles = getComputedStyle(document.documentElement);
+      colors = [
+        styles.getPropertyValue('--accent-primary').trim(),
+        styles.getPropertyValue('--accent-2').trim()
+      ];
+    };
+
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    const tick = () => {
+      // Fade in while the mouse is on the page, fade out after it leaves
+      alpha += ((mouse.active ? 1 : 0) - alpha) * 0.08;
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach(p => {
+        p.angle += p.speed;
+        const tx = mouse.x + Math.cos(p.angle) * p.radius;
+        const ty = mouse.y + Math.sin(p.angle) * p.radius;
+        p.vx = (p.vx + (tx - p.x) * p.ease) * 0.82;
+        p.vy = (p.vy + (ty - p.y) * p.ease) * 0.82;
+        p.x += p.vx;
+        p.y += p.vy;
+
+        ctx.globalAlpha = alpha * 0.75;
+        ctx.fillStyle = colors[p.tone];
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // Stop drawing once fully faded out so the page stays idle
+      if (!mouse.active && alpha < 0.01) {
+        ctx.clearRect(0, 0, width, height);
+        frame = null;
+        return;
+      }
+      frame = requestAnimationFrame(tick);
+    };
+
+    const start = () => {
+      if (!frame && !document.hidden) frame = requestAnimationFrame(tick);
+    };
+
+    window.addEventListener('pointermove', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      if (!mouse.active) {
+        // Start the swarm at the cursor instead of flying in from a corner
+        particles.forEach(p => { if (p.x < 0) { p.x = e.clientX; p.y = e.clientY; } });
+      }
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      mouse.active = true;
+      start();
+    }, { passive: true });
+
+    document.documentElement.addEventListener('mouseleave', () => { mouse.active = false; });
+    window.addEventListener('blur', () => { mouse.active = false; });
+    window.addEventListener('resize', resize);
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && frame) { cancelAnimationFrame(frame); frame = null; } else start();
+    });
+
+    // Pick up the new accent colours when the theme changes
+    new MutationObserver(readColors).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+
+    readColors();
+    resize();
   }
 });

@@ -14,7 +14,7 @@ Live site: [yash-maithani.github.io/MCA-Portfolio](https://yash-maithani.github.
 - My education
 - A contact form and links to my email, GitHub and LinkedIn
 
-The site has light and dark themes (the choice is saved in the browser), works on phones and desktops, and supports keyboard navigation. Cards fade in as you scroll and a small bubble sort runs in the header card; both switch off when the visitor's system asks for reduced motion.
+The site has light and dark themes (the choice is saved in the browser), works on phones and desktops, and supports keyboard navigation. Cards fade in as you scroll, a small bubble sort runs in the header card, and on computers with a mouse a swarm of small dots follows the cursor; all three switch off when the visitor's system asks for reduced motion.
 
 ## Projects
 
@@ -34,7 +34,7 @@ Plain HTML, CSS and JavaScript with no frameworks and no build step. Icons come 
 MCA-Portfolio/
 ├── index.html      page content
 ├── style.css       styles and the light/dark theme colours
-├── script.js       theme toggle, mobile menu, nav highlighting, contact form, animations
+├── script.js       theme toggle, mobile menu, nav highlighting, contact form, animations, cursor swarm
 ├── favicon.svg     site icon
 └── assets/
     ├── algotrace.jpg   AlgoTrace screenshot for the featured project
