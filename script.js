@@ -1,7 +1,7 @@
 /**
  * Portfolio scripts, Yash Maithani
  * Dark/light theme, mobile navigation, active nav highlighting,
- * the contact form, scroll reveal and the hero sorting animation.
+ * the contact form, the hero sorting animation and the cursor swarm that builds the page.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -142,38 +142,164 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // 6. Reveal cards as they scroll into view
-  if (!reduceMotion && 'IntersectionObserver' in window) {
-    const revealTargets = document.querySelectorAll(
-      '.section-header, .about-text-card, .stat-card, .skill-category-card, .featured-project, ' +
-      '.project-card, .education-card, .learning-card, .contact-card, .contact-form'
-    );
+  // 6. Cursor swarm: the page builds itself in front of the visitor.
+  // Every block starts as a dashed outline. Three labelled cursors (HTML, CSS, JS)
+  // fly to the blocks that are on screen, top to bottom, and click each one into place.
+  // Without JavaScript, or when reduced motion is requested, the page shows normally.
+  const buildTargets = reduceMotion || !('IntersectionObserver' in window) ? [] : Array.from(document.querySelectorAll(
+    '.hero-content > *, .hero-facts, .section-header, .about-text-card, .stat-card, .skill-category-card, ' +
+    '.featured-project, .project-card, .education-card, .learning-card, .contact-card, .contact-form'
+  ));
 
-    revealTargets.forEach(el => {
-      el.setAttribute('data-reveal', '');
-      // Stagger cards that sit side by side in the same grid
-      const index = Array.prototype.indexOf.call(el.parentElement.children, el);
-      el.style.transitionDelay = `${Math.min(index, 3) * 80}ms`;
+  if (buildTargets.length) {
+    buildTargets.forEach(el => el.setAttribute('data-build', 'pending'));
+    document.documentElement.classList.add('build-on');
+
+    const pending = new Set(buildTargets);
+    const claimed = new Set();
+    const onScreenSince = new Map();
+    let frame = null;
+
+    const layer = document.createElement('div');
+    layer.className = 'build-layer';
+    layer.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(layer);
+
+    const arrow = '<svg viewBox="0 0 16 20" width="16" height="20"><path d="M1.5 1.5v15l4-3.6 2.8 6.3 2.4-1-2.8-6.2h5.4z"/></svg>';
+    const cursors = ['HTML', 'CSS', 'JS'].map((name, i) => {
+      const el = document.createElement('div');
+      el.className = `build-cursor builder-${i + 1}`;
+      el.innerHTML = `${arrow}<span class="build-cursor-label">${name}</span>`;
+      layer.appendChild(el);
+      // Each cursor flies in from a different edge
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const start = [[-40, h * 0.35], [w + 40, h * 0.55], [w * 0.5, h + 40]][i];
+      return { el, index: i + 1, x: start[0], y: start[1], target: null, fx: 0, fy: 0, state: 'idle', idleSince: 0, until: 0 };
     });
-    document.documentElement.classList.add('reveal-on');
 
-    const revealObserver = new IntersectionObserver((entries) => {
+    const finish = (el) => {
+      pending.delete(el);
+      claimed.delete(el);
+      onScreenSince.delete(el);
+      visibility.unobserve(el);
+      el.setAttribute('data-build', 'done');
+      // Hand the element back to its own hover styles once it has faded in
+      setTimeout(() => {
+        el.removeAttribute('data-build');
+        el.style.removeProperty('--builder');
+      }, 700);
+    };
+
+    const nextTarget = () => buildTargets.find(el => onScreenSince.has(el) && !claimed.has(el));
+
+    const ripple = (x, y, index) => {
+      const ring = document.createElement('span');
+      ring.className = `build-ripple builder-${index}`;
+      ring.style.left = `${x}px`;
+      ring.style.top = `${y}px`;
+      ring.addEventListener('animationend', () => ring.remove());
+      layer.appendChild(ring);
+    };
+
+    const tick = (now) => {
+      // Never leave a block waiting: if the cursors fall behind a fast scroll, place it directly
+      onScreenSince.forEach((since, el) => {
+        if (!claimed.has(el) && now - since > 3500) finish(el);
+      });
+
+      let waiting = 0;
+      onScreenSince.forEach((_, el) => { if (!claimed.has(el)) waiting++; });
+      const speed = 0.1 + Math.min(waiting, 6) * 0.025;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+
+      cursors.forEach(c => {
+        // Drop a block that scrolled away before the cursor reached it
+        if (c.state === 'moving' && !onScreenSince.has(c.target)) {
+          claimed.delete(c.target);
+          c.target = null;
+          c.state = 'idle';
+          c.idleSince = now;
+        }
+
+        if (c.state === 'idle') {
+          const target = nextTarget();
+          if (target) {
+            claimed.add(target);
+            c.target = target;
+            c.fx = 0.15 + Math.random() * 0.6;
+            c.fy = 0.2 + Math.random() * 0.5;
+            c.state = 'moving';
+          }
+        }
+
+        if (c.target) {
+          const r = c.target.getBoundingClientRect();
+          const tx = Math.min(Math.max(r.left + r.width * c.fx, 8), vw - 60);
+          const ty = Math.min(Math.max(r.top + r.height * c.fy, 8), vh - 40);
+
+          if (c.state === 'moving') {
+            c.x += (tx - c.x) * speed;
+            c.y += (ty - c.y) * speed;
+            if (Math.hypot(tx - c.x, ty - c.y) < 4) {
+              c.state = 'clicking';
+              c.until = now + 280;
+              c.target.style.setProperty('--builder', `var(--builder-${c.index})`);
+              c.target.setAttribute('data-build', 'active');
+              ripple(c.x, c.y, c.index);
+            }
+          } else {
+            // Stay on the block while it is being placed, even if the page scrolls
+            c.x = tx;
+            c.y = ty;
+            if (now >= c.until) {
+              finish(c.target);
+              c.target = null;
+              c.state = 'idle';
+              c.idleSince = now;
+            }
+          }
+        }
+
+        c.el.classList.toggle('is-shown', c.state !== 'idle' || now - c.idleSince < 900);
+        c.el.classList.toggle('is-clicking', c.state === 'clicking');
+        c.el.style.transform = `translate3d(${c.x}px, ${c.y}px, 0)`;
+      });
+
+      const resting = cursors.every(c => c.state === 'idle' && now - c.idleSince > 1200);
+      if (resting && pending.size === 0) {
+        // Everything is built: clean up for good
+        layer.remove();
+        visibility.disconnect();
+        frame = null;
+        return;
+      }
+      if (resting && onScreenSince.size === 0) {
+        // Nothing on screen to build: pause until a new block scrolls into view
+        frame = null;
+        return;
+      }
+      frame = requestAnimationFrame(tick);
+    };
+
+    const start = () => {
+      if (!frame) frame = requestAnimationFrame(tick);
+    };
+
+    const visibility = new IntersectionObserver((entries) => {
+      const now = performance.now();
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const el = entry.target;
-          el.classList.add('is-visible');
-          revealObserver.unobserve(el);
-          // Hand the element back to its own hover transitions once it has appeared
-          setTimeout(() => {
-            el.removeAttribute('data-reveal');
-            el.classList.remove('is-visible');
-            el.style.transitionDelay = '';
-          }, 1000);
+          if (!onScreenSince.has(entry.target)) onScreenSince.set(entry.target, now);
+        } else {
+          onScreenSince.delete(entry.target);
         }
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      start();
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
 
-    revealTargets.forEach(el => revealObserver.observe(el));
+    buildTargets.forEach(el => visibility.observe(el));
   }
 
   // 7. Bubble sort animation in the hero card
@@ -251,4 +377,5 @@ document.addEventListener('DOMContentLoaded', () => {
       schedule(900);
     }
   }
+
 });
